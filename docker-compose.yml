@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+
+  web:
+    image: hitalos/laravel:latest
+    ports:
+        - 80:80
+    volumes:
+        - ./:/var/www
+    links:
+        - db
+    environment:
+        DB_HOST: db
+        DB_DATABASE: 'homestead'
+        DB_USERNAME: 'homestead'
+        DB_PASSWORD: 'secret'
+        DB_CONNECTION: 'mysql'
+
+db:
+    image: mysql:latest
+    environment:
+        # with mysql
+        MYSQL_ROOT_PASSWORD: 'root'
+        MYSQL_DATABASE: 'homestead'
+        MYSQL_USER: 'homestead'
+        MYSQL_PASSWORD: 'secret'
